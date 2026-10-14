@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs xmlns="http://www.w3.org/2000/svg">
+<linearGradient id="md" gradientUnits="userSpaceOnUse" x1="16" y1="14" x2="34" y2="33"><stop offset="0" stop-color="#E6EEFF" /><stop offset="0.5" stop-color="#D3E3FF" /><stop offset="1" stop-color="#7DB1FF" /></linearGradient>
+<linearGradient id="mr" gradientUnits="userSpaceOnUse" x1="0" y1="15" x2="0" y2="34"><stop offset="0" stop-color="#FFFFFF" /><stop offset="0.55" stop-color="#FFFFFF" /><stop offset="1" stop-color="#7DB1FF" /></linearGradient>
+<linearGradient id="ml" gradientUnits="userSpaceOnUse" x1="0" y1="20" x2="0" y2="34"><stop offset="0" stop-color="#A9CAFA" /><stop offset="1" stop-color="#8DB7F7" /></linearGradient></defs>
+<circle xmlns="http://www.w3.org/2000/svg" cx="24" cy="24" r="22" fill="#1B5BE8" />
+<g xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.8">
+<path d="M13.25 21 V33.4" stroke="url(#ml)" />
+<path d="M13.25 23 V18.6 C13.25 15.2 16.6 14.0 18.4 16.6 L33.9 33.2" stroke="url(#md)" />
+<path d="M34.2 15.2 V33.4" stroke="url(#mr)" /></g></svg>
