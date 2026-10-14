@@ -39,7 +39,11 @@
     border-radius: 999px; padding: 16px 24px; font-weight: 700; font-size: 1.1rem;
   }
   .download small { font-weight: 400; font-size: .85rem; opacity: .85; }
-  .download:focus-visible { outline: 3px solid var(--soft); outline-offset: 3px; }
+  .download:focus-visible, .activate:focus-visible { outline: 3px solid var(--soft); outline-offset: 3px; }
+  .activate {
+    display: flex; justify-content: center; background: var(--soft); color: var(--on-soft);
+    text-decoration: none; border-radius: 999px; padding: 14px 24px; font-weight: 700;
+  }
   .card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 20px; }
   .card h2 { margin: 0 0 12px; font-size: 1rem; }
   ol { margin: 0; padding: 0; list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 12px; }
@@ -72,12 +76,16 @@
     <small><span data-it="Android · versione" data-en="Android · version">Android · versione</span> 0.4.5 · 20 MB</small>
   </a>
 
+  <a class="activate" id="activate" href="#" hidden>
+    <span data-it="Poi: attiva Nestra" data-en="Then: activate Nestra">Poi: attiva Nestra</span>
+  </a>
+
   <section class="card">
     <h2 data-it="Come si installa" data-en="How to install">Come si installa</h2>
     <ol>
       <li data-it="Scarica il file e aprilo." data-en="Download the file and open it.">Scarica il file e aprilo.</li>
       <li data-it="Se Android lo chiede, consenti l'installazione da questa fonte." data-en="If Android asks, allow installing from this source.">Se Android lo chiede, consenti l'installazione da questa fonte.</li>
-      <li data-it="Apri Nestra e inquadra il codice QR che hai ricevuto, oppure scrivi a mano indirizzo e codice." data-en="Open Nestra and scan the QR code you were sent, or type the address and code by hand.">Apri Nestra e inquadra il codice QR che hai ricevuto, oppure scrivi a mano indirizzo e codice.</li>
+      <li id="step3" data-it="Apri Nestra e inquadra il codice QR che hai ricevuto, oppure scrivi a mano indirizzo e codice." data-en="Open Nestra and scan the QR code you were sent, or type the address and code by hand.">Apri Nestra e inquadra il codice QR che hai ricevuto, oppure scrivi a mano indirizzo e codice.</li>
     </ol>
   </section>
 
@@ -96,6 +104,22 @@
 <script>
   // Italian unless the browser asks for another language; the buttons switch it. Nothing is stored.
   (function () {
+    // An invitation (0.4.6): the activation link rides in the fragment, which never reaches this
+    // site; it only becomes the "attiva" button, and the address bar drops it at once.
+    var invite = null;
+    var m = /^#invite=(.+)$/.exec(location.hash);
+    if (m) {
+      try { invite = decodeURIComponent(m[1]); } catch (e) { invite = null; }
+      if (invite && invite.indexOf("nestra://activate?") !== 0) invite = null;
+      try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    }
+    if (invite) {
+      var a = document.getElementById("activate");
+      a.href = invite; a.hidden = false;
+      var step = document.getElementById("step3");
+      step.setAttribute("data-it", "Torna qui e tocca \u201cattiva Nestra\u201d: l'app si apre con il tuo invito.");
+      step.setAttribute("data-en", "Come back here and tap \u201cactivate Nestra\u201d: the app opens with your invitation.");
+    }
     var show = function (lang) {
       document.documentElement.lang = lang;
       document.title = lang === "it" ? "Scarica Nestra" : "Download Nestra";
