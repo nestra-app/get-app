@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Scarica Nestra</title>
+<link rel="icon" href="mark.svg" type="image/svg+xml">
+<style>
+  /* Nestra's own colours (core-ui, D-120); no outside fonts or scripts: nothing is fetched but this site. */
+  :root {
+    --bg: #F6F8FC; --surface: #FFFFFF; --fg: #101828; --muted: #5B6475; --line: #E4E9F2;
+    --primary: #1B5BE8; --on-primary: #FFFFFF; --soft: #E3ECFF; --on-soft: #0B3AA6;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0D121B; --surface: #161D29; --fg: #E7ECF5; --muted: #9AA6BC; --line: #263044;
+      --primary: #7DB1FF; --on-primary: #08245E; --soft: #1E3566; --on-soft: #D9E6FF;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+  }
+  main { max-width: 26rem; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+  header { display: flex; flex-direction: column; align-items: center; gap: 12px; padding-top: 24px; text-align: center; }
+  .mark { width: 88px; height: 88px; }
+  .wordmark { height: 30px; }
+  .wordmark.dark { display: none; }
+  @media (prefers-color-scheme: dark) { .wordmark.light { display: none; } .wordmark.dark { display: inline; } }
+  .tagline { margin: 0; color: var(--muted); }
+  .download {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    background: var(--primary); color: var(--on-primary); text-decoration: none;
+    border-radius: 999px; padding: 16px 24px; font-weight: 700; font-size: 1.1rem;
+  }
+  .download small { font-weight: 400; font-size: .85rem; opacity: .85; }
+  .download:focus-visible { outline: 3px solid var(--soft); outline-offset: 3px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 20px; }
+  .card h2 { margin: 0 0 12px; font-size: 1rem; }
+  ol { margin: 0; padding: 0; list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 12px; }
+  ol li { counter-increment: step; display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+  ol li::before {
+    content: counter(step); width: 28px; height: 28px; border-radius: 50%;
+    background: var(--soft); color: var(--on-soft); font-weight: 700; font-size: .9rem;
+    display: grid; place-items: center;
+  }
+  .note { margin: 0; color: var(--muted); font-size: .9rem; text-align: center; }
+  details { color: var(--muted); font-size: .8rem; }
+  summary { cursor: pointer; }
+  code { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+  footer { display: flex; justify-content: center; gap: 16px; font-size: .9rem; }
+  footer button { background: none; border: 0; color: var(--primary); font: inherit; cursor: pointer; padding: 4px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img class="mark" src="mark.svg" alt="">
+    <img class="wordmark light" src="wordmark.svg" alt="Nestra">
+    <img class="wordmark dark" src="wordmark-dark.svg" alt="Nestra">
+    <p class="tagline" data-it="La casa, condivisa: spesa, agenda, rifiuti e carte." data-en="Your home, shared: shopping, agenda, bins and cards.">La casa, condivisa: spesa, agenda, rifiuti e carte.</p>
+  </header>
+
+  <a class="download" href="https://github.com/nestra-app/get-app/releases/latest/download/nestra.apk">
+    <span data-it="Scarica Nestra" data-en="Download Nestra">Scarica Nestra</span>
+    <small><span data-it="Android · versione" data-en="Android · version">Android · versione</span> 0.4.4 · 20 MB</small>
+  </a>
+
+  <section class="card">
+    <h2 data-it="Come si installa" data-en="How to install">Come si installa</h2>
+    <ol>
+      <li data-it="Scarica il file e aprilo." data-en="Download the file and open it.">Scarica il file e aprilo.</li>
+      <li data-it="Se Android lo chiede, consenti l'installazione da questa fonte." data-en="If Android asks, allow installing from this source.">Se Android lo chiede, consenti l'installazione da questa fonte.</li>
+      <li data-it="Apri Nestra e inquadra il codice QR che ti è stato mandato." data-en="Open Nestra and scan the QR code you were sent.">Apri Nestra e inquadra il codice QR che ti è stato mandato.</li>
+    </ol>
+  </section>
+
+  <p class="note" data-it="Serve un invito: senza il codice QR l'app non si collega. Poi si aggiorna da sola." data-en="You need an invitation: without the QR code the app cannot connect. Then it updates itself.">Serve un invito: senza il codice QR l'app non si collega. Poi si aggiorna da sola.</p>
+
+  <details>
+    <summary data-it="Verifica il file" data-en="Check the file">Verifica il file</summary>
+    <p>SHA-256 <code>cbc1c2a6fcf423921ad6444b481731ac2a17a9225b466bd47db69ae02968d7e7</code></p>
+  </details>
+
+  <footer>
+    <button type="button" data-lang="it" hidden>Italiano</button>
+    <button type="button" data-lang="en">English</button>
+  </footer>
+</main>
+<script>
+  // Italian unless the browser asks for another language; the buttons switch it. Nothing is stored.
+  (function () {
+    var show = function (lang) {
+      document.documentElement.lang = lang;
+      document.title = lang === "it" ? "Scarica Nestra" : "Download Nestra";
+      document.querySelectorAll("[data-" + lang + "]").forEach(function (el) { el.textContent = el.getAttribute("data-" + lang); });
+      document.querySelectorAll("footer button").forEach(function (b) { b.hidden = b.getAttribute("data-lang") === lang; });
+    };
+    document.querySelectorAll("footer button").forEach(function (b) {
+      b.addEventListener("click", function () { show(b.getAttribute("data-lang")); });
+    });
+    show((navigator.language || "it").toLowerCase().indexOf("it") === 0 ? "it" : "en");
+  })();
+</script>
+</body>
+</html>
