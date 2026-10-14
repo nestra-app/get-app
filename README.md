@@ -19,5 +19,5 @@
   · <a href="https://nestra-app.github.io/get-app/">Come si installa / How to install</a>
 </p>
 <p align="center">
-  <sub>Serve un invito: senza il codice QR l'app non si collega. · You need an invitation: without the QR code the app cannot connect.</sub>
+  <sub>Serve un invito: un codice QR, oppure indirizzo e codice. · You need an invitation: a QR code, or an address and a code.</sub>
 </p>
