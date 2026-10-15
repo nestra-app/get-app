@@ -110,6 +110,8 @@
     var invite = null;
     var m = /^#invite=(.+)$/.exec(location.hash);
     if (m) {
+      // A new invitation replaces the kept one, even a broken one (r409): never the last one again.
+      try { sessionStorage.removeItem("invite"); } catch (e) {}
       try { invite = decodeURIComponent(m[1]); } catch (e) { invite = null; }
       try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
     } else {
