@@ -102,7 +102,8 @@
   </footer>
 </main>
 <script>
-  // Italian unless the browser asks for another language; the buttons switch it. Nothing is stored.
+  // Italian unless the browser asks for another language; the buttons switch it. Only an invitation
+  // is kept, in this tab (sessionStorage), so a reload while the app installs keeps the button.
   (function () {
     // An invitation (0.4.6): the activation link rides in the fragment, which never reaches this
     // site; it only becomes the "attiva" button, and the address bar drops it at once.
@@ -110,15 +111,18 @@
     var m = /^#invite=(.+)$/.exec(location.hash);
     if (m) {
       try { invite = decodeURIComponent(m[1]); } catch (e) { invite = null; }
-      if (invite && invite.indexOf("nestra://activate?") !== 0) invite = null;
       try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    } else {
+      try { invite = sessionStorage.getItem("invite"); } catch (e) { invite = null; }
     }
+    if (invite && invite.indexOf("nestra://activate?") !== 0) invite = null;
+    if (invite) { try { sessionStorage.setItem("invite", invite); } catch (e) {} }
     if (invite) {
       var a = document.getElementById("activate");
       a.href = invite; a.hidden = false;
       var step = document.getElementById("step3");
-      step.setAttribute("data-it", "Torna qui e tocca \u201cattiva Nestra\u201d: l'app si apre con il tuo invito.");
-      step.setAttribute("data-en", "Come back here and tap \u201cactivate Nestra\u201d: the app opens with your invitation.");
+      step.setAttribute("data-it", "Dopo l'installazione non aprire l'app da l\u00ec: torna qui e tocca \u201cattiva Nestra\u201d. L'app si apre con il tuo invito.");
+      step.setAttribute("data-en", "Once installed, don't open the app from there: come back here and tap \u201cactivate Nestra\u201d. The app opens with your invitation.");
     }
     var show = function (lang) {
       document.documentElement.lang = lang;
